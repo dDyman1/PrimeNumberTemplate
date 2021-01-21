@@ -3,16 +3,14 @@
  */
 package PrimeNumberTemplate;
 
+import humanize.Humanize;
+
 public class PrimeNumber {
     public static void main(String[] args){
-        //ToDo: Print statement that tells you if the umber is prime or not
+       //ToDo
     }
 
     public static boolean isPrime(int num){
-        /**
-         *  ToDo: return T/F if val is prime or
-         *  not and create error message if the number is less
-         *  than 0
-         */
+        //ToDo
     }
 }

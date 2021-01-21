@@ -4,12 +4,28 @@
 package PrimeNumberTemplate;
 
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PrimeNumberTest {
+    private final PrintStream standardOut = System.out;
+    private final ByteArrayOutputStream outputStreamCapture = new ByteArrayOutputStream();
+    private final InputStream originalIn = System.in;
+    private final InputStream in = new ByteArrayInputStream("7".getBytes());
+
+    public void setUp() {
+        System.setOut(new PrintStream(outputStreamCapture));
+        System.setIn(in);
+    }
+
     @Test
     void TestIsPrimeA(){
-        assertTrue(PrimeNumber.isPrime(7));
+        assertTrue(PrimeNumber.isPrime(5));
     }
     @Test
     void TestIsPrimeB(){
@@ -23,5 +39,11 @@ class PrimeNumberTest {
         catch (Exception e){
             assertTrue(e.getMessage().equals("Parameter 'num' cannot be less than 0"));
         }
+    }
+    @Test
+    void TestI0(){
+        setUp();
+        PrimeNumber.main(null);
+        assertEquals("The number seven is Prime.", outputStreamCapture.toString().trim());
     }
 }
